@@ -6,107 +6,107 @@
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
     --accent-green: #22c55e;
-    --accent-red: #ef4444;
-    --accent-yellow: #eab308;
-    /* Qual variável de cor falta para os botões e estados ativos? */
-}
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            background-color: var(--bg-color); /* Usando sua variável do style.css */
+        }
+        .menu-container {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 90%;
+        }
+       
+        /* Estilização da Logo */
+        .logo-colegio {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
 
-* {
-    /* Como garantir que padding e border não alterem a largura total? */
-    box-sizing: border-box;
-}
+        h1 { margin-bottom: 30px; color: white; font-size: 2rem; }
+       
+        /* --- ESTILOS DO FORMULÁRIO DE LOGIN --- */
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: left;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .input-group label {
+            color: var(--text-main);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        .input-group input {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+        .input-group input:focus {
+            border-color: #3b82f6;
+        }
+        .btn-submit {
+            padding: 12px;
+            background: #10b981; /* Verde profissional para o botão de entrar */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+        .btn-submit:hover {
+            background: #059669;
+        }
+        .error-message {
+            color: #ef4444;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 5px;
+            display: none;
+        }
 
-body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    font-family: 'Inter', -apple-system, sans-serif;
-    margin: 0;
-    height: 100vh;
-    overflow: hidden;
-}
-
-/* --- PAINEL PRINCIPAL (LAYOUT GENERALIZADO) --- */
-.dashboard-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    padding: 20px;
-    gap: 20px;
-}
-
-/* Barra Superior de Estatísticas */
-.stats-bar {
-    display: flex;
-    /* Como alinhar e distribuir os cards de estatística horizontalmente? */
-    align-items: center;
-    background: var(--card-bg);
-    padding: 20px;
-    border-radius: 15px;
-}
-
-.stat-item { text-align: center; }
-.stat-item .value { font-size: 2rem; font-weight: 800; }
-.stat-item.alert .value { color: var(--accent-red); }
-
-/* Área Principal (Divisão Lateral) */
-.main-content {
-    display: flex;
-    flex: 1;
-    gap: 20px;
-    min-height: 0;
-}
-
-/* Seção dos Cards de Alunos */
-.monitor-section {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    background: rgba(30, 41, 59, 0.5);
-    border-radius: 15px;
-    padding: 20px;
-    /* Qual regra ativa a barra de rolagem apenas quando o conteúdo estoura? */
-}
-
-/* Grid Adaptável de Cards */
-.student-grid {
-    display: grid;
-    /* Como criar uma grade fluida de no mínimo 300px sem quebrar a tela? */
-    gap: 15px;
-}
-
-/* Card Individual do Aluno */
-.student-card {
-    background: var(--card-bg);
-    padding: 18px;
-    border-radius: 12px;
-    border-left: 8px solid var(--accent-blue);
-    position: relative;
-}
-
-.student-card h3 {
-    margin: 0;
-    /* Como tratar nomes extensos para exibir '...' em vez de quebrar a linha? */
-}
-
-/* Animação para Alunos em Tempo Crítico (>10 min) */
-.student-card.critical {
-    border-left-color: var(--accent-red);
-    /* Como associar a animação pulse-red em loop continuo? */
-}
-
-/* Lateral de Gráficos */
-.analytics-side {
-    flex: 1;
-    background: var(--card-bg);
-    border-radius: 15px;
-    padding: 20px;
-}
-
-/* Animações Keyframes */
-@keyframes pulse-red {
-    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        /* --- MENU PRINCIPAL (INICIALMENTE ESCONDIDO) --- */
+        .btn-group {
+            display: none; /* Escondido até o login estar correto */
+            flex-direction: column;
+            gap: 20px;
+        }
+        .btn {
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            border-radius: 10px;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .btn-scanner { background: #3b82f6; }
+        .btn-telao { background: #8b5cf6; }
+        .btn:hover { transform: scale(1.05); filter: brightness(1.1); }
+       
+        p { margin-top: 25px; font-size: 0.9rem; opacity: 0.7; color: var(--text-main); }
+    </style>
 }
 
 /* --- REGRAS DE RESPONSIVIDADE (MOBILE) --- */
